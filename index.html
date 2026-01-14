@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Matrimonio de Daniel &amp; Brenda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Invitación y contador regresivo para el matrimonio de Daniel & Brenda — 29 de enero de 2026, Municipalidad de San Isidro (America/Lima UTC-05:00)." />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #d4af37;
+      --card-bg: rgba(212,175,55,0.95);
+      --text: #333;
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: var(--text);
+      background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/flower-pattern.png');
+      background-repeat: repeat;
+      background-size: auto;
+      background-attachment: fixed;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{
+      text-align:center;
+      padding: 36px 20px;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 3px solid var(--accent);
+    }
+    header h1{
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin: 0;
+      color: var(--accent);
+      line-height: 1;
+    }
+    header p{ margin: 8px 0 0; font-weight: 300; }
+
+    main{ padding: 20px; display:flex; flex-direction:column; gap:18px; align-items:center; }
+
+    .info-row { text-align:center; font-size:0.95rem; color:#444; }
+
+    .countdown {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      width: min(760px, 96%);
+    }
+    .unit {
+      background-color: var(--card-bg);
+      color: #fff;
+      padding: 14px 12px;
+      border-radius: 10px;
+      text-align:center;
+      min-width: 78px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .value {
+      display:block;
+      font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+      font-weight:700;
+      line-height:1;
+      transition: transform 260ms ease;
+    }
+    .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top:6px;
+      opacity: 0.95;
+    }
+    .zoom { transform: scale(1.25); }
+    @media (prefers-reduced-motion: reduce) {
+      .value { transition: none; }
+      .zoom { transform: none; }
+    }
+
+    .map-card {
+      width: min(900px, 96%);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      background: #fff;
+    }
+    .map-header {
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #eee;
+      font-weight:600;
+    }
+    .map-iframe { width:100%; height:360px; border:0; display:block; }
+
+    footer {
+      text-align:center;
+      padding: 18px;
+      background-color: rgba(245,245,245,0.92);
+      color: var(--text);
+      font-size: 0.95rem;
+      border-top: 3px solid var(--accent);
+    }
+
+    .message { text-align:center; font-size: clamp(1rem, 2.6vw, 1.05rem); padding: 8px; }
+
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Matrimonio de Daniel &amp; Brenda</h1>
+    <p>29 de enero de 2026 · Municipalidad de San Isidro</p>
+  </header>
+
+  <main>
+    <div class="info-row" aria-hidden="false">
+      Hora del evento: <strong>10:00</strong> (zona: <strong>America/Lima</strong>, UTC−05:00)
+    </div>
+
+    <!-- Contador (role timer para accesibilidad) -->
+    <section id="countdown" class="countdown" role="timer" aria-live="polite" aria-atomic="true">
+      <div class="unit" aria-label="Días">
+        <span id="days" class="value">0</span>
+        <span class="label">Días</span>
+      </div>
+      <div class="unit" aria-label="Horas">
+        <span id="hours" class="value">00</span>
+        <span class="label">Horas</span>
+      </div>
+      <div class="unit" aria-label="Minutos">
+        <span id="minutes" class="value">00</span>
+        <span class="label">Minutos</span>
+      </div>
+      <div class="unit" aria-label="Segundos">
+        <span id="seconds" class="value">00</span>
+        <span class="label">Segundos</span>
+      </div>
+    </section>
+
+    <!-- Mapa embebido: búsqueda por defecto a "Municipalidad de San Isidro, Lima".
+         Si prefieres coordenadas exactas o OpenStreetMap en lugar de Google, lo cambio. -->
+    <div class="map-card" aria-label="Mapa de la ubicación">
+      <div class="map-header">Ubicación: Municipalidad de San Isidro</div>
+      <iframe
+        class="map-iframe"
+        title="Mapa - Municipalidad de San Isidro, Lima"
+        src="https://www.google.com/maps?q=Municipalidad%20de%20San%20Isidro%2C%20Lima&z=15&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-hidden="false"
+      ></iframe>
+    </div>
+  </main>
+
+  <footer>
+    <div class="message">✨ Tu compañía hará de este día un recuerdo inolvidable ✨</div>
+  </footer>
+
+  <script>
+    // Configuración del evento (slot: fecha/hora en la zona especificada)
+    const eventCfg = {
+      year: 2026,
+      month: 1,      // enero = 1
+      day: 29,
+      hour: 10,
+      minute: 0,
+      second: 0,
+      timeZone: 'America/Lima' // usado para cálculo con offset estático (ver tzOffsets)
+    };
+
+    // Mapa simple de offsets (horas respecto a UTC, negativo = UTC-)
+    // Nota: estos valores son estáticos. Para zonas con DST usar una biblioteca (luxon/Intl/Temporal).
+    const tzOffsets = {
+      'America/Lima': -5
+    };
+
+    // obtiene el offset en horas para la zona solicitada; si no hay mapping usa el offset del navegador (fallback)
+    function getZoneOffsetHours(tz) {
+      if (tzOffsets.hasOwnProperty(tz)) return tzOffsets[tz];
+      // fallback: use current locale offset (no es lo mismo que la zona objetivo, pero evita NaN)
+      return -new Date().getTimezoneOffset() / 60;
+    }
+
+    // Calcula timestamp UTC (ms) para las componentes de fecha/hora interpretadas en la zona objetivo.
+    // Fórmula: targetUTC = Date.UTC(..., hour - offset) donde offset es el valor tzOffsets[zone] (ej: -5).
+    // Ejemplo: America/Lima offset = -5 -> UTC hour = localHour - (-5) = localHour + 5
+    (function() {
+      const elDays = document.getElementById('days');
+      const elHours = document.getElementById('hours');
+      const elMinutes = document.getElementById('minutes');
+      const elSeconds = document.getElementById('seconds');
+      const container = document.getElementById('countdown');
+
+      const offsetHours = getZoneOffsetHours(eventCfg.timeZone);
+      const targetTs = Date.UTC(
+        eventCfg.year,
+        eventCfg.month - 1,
+        eventCfg.day,
+        eventCfg.hour - offsetHours,
+        eventCfg.minute,
+        eventCfg.second
+      );
+
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let prev = { days: null, hours: null, minutes: null, seconds: null };
+
+      function pad(v){ return String(v).padStart(2, '0'); }
+
+      function updateOnce() {
+        if (isNaN(targetTs)) {
+          container.innerHTML = '<div class="message">Fecha inválida. Revisa la configuración del evento.</div>';
+          return false;
+        }
+
+        const now = Date.now();
+        const distance = targetTs - now;
+
+        if (distance <= 0) {
+          container.innerHTML = '<div class="message">🎉 ¡El gran día ha llegado! 🎉</div>';
+          return false;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (prev.days !== days) {
+          elDays.textContent = days;
+          if (!reduceMotion) elDays.classList.add('zoom');
+          setTimeout(() => elDays.classList.remove('zoom'), 300);
+          prev.days = days;
+        }
+        if (prev.hours !== hours) {
+          elHours.textContent = pad(hours);
+          if (!reduceMotion) elHours.classList.add('zoom');
+          setTimeout(() => elHours.classList.remove('zoom'), 300);
+          prev.hours = hours;
+        }
+        if (prev.minutes !== minutes) {
+          elMinutes.textContent = pad(minutes);
+          if (!reduceMotion) elMinutes.classList.add('zoom');
+          setTimeout(() => elMinutes.classList.remove('zoom'), 300);
+          prev.minutes = minutes;
+        }
+        if (prev.seconds !== seconds) {
+          elSeconds.textContent = pad(seconds);
+          if (!reduceMotion) elSeconds.classList.add('zoom');
+          setTimeout(() => elSeconds.classList.remove('zoom'), 300);
+          prev.seconds = seconds;
+        }
+
+        return true;
+      }
+
+      // Ejecuta de inmediato y luego cada segundo (hasta el evento)
+      if (updateOnce()) {
+        const interval = setInterval(() => {
+          if (!updateOnce()) clearInterval(interval);
+        }, 1000);
+      }
+
+      // Mostrar información de zona/hora en consola para diagnóstico
+      console.info('Event time zone:', eventCfg.timeZone, 'offsetHours:', offsetHours);
+    })();
+  </script>
+</body>
+</html>
